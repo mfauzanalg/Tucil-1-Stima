@@ -22,6 +22,8 @@ Titik penyusun convex hull :
 [(132,443), (233,975), (425,599), (184,10), (132,443)]
 Waktu yang dibutuhkan untuk membentuk convex hull : 32 ms
 
+Masukkan banyaknya titik : 10
+
 Daftar Poin : 
 (451,18)
 (341,318)
@@ -62,7 +64,7 @@ Daftar Poin :
 (417,257)
 (619,39)
 
-Titik penyusun convex hull : 10
+Titik penyusun convex hull :
 [(127,913), (149,526), (229,242), (271,126), (619,39), (879,32), (778,912), (542,982), (170,951), (127,913)]
 Waktu yang dibutuhkan untuk membentuk convex hull : 487 ms
 
@@ -121,6 +123,6 @@ Daftar Poin :
 (293,365)
 (538,543)
 
-Titik penyusun convex hull : 15
+Titik penyusun convex hull :
 [(9,489), (20,383), (136,119), (237,45), (871,52), (898,181), (946,511), (936,721), (893,822), (738,992), (552,986), (235,969), (116,757), (40,604), (9,489)]
 Waktu yang dibutuhkan untuk membentuk convex hull : 5441 ms

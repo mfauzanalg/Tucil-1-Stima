@@ -12,8 +12,6 @@ using namespace std;
 namespace plt = matplotlibcpp;
 using namespace std; 
 
-
-
 struct Point{
 	// Struktur Poin
 	int x;
