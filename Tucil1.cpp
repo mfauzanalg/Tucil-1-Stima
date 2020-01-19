@@ -40,10 +40,10 @@ int IsCH (Point a, Point b, Point c){
 }
 
 int main() {
-	int n;				// jumlah titik
-	int i, j;		// variabel untuk loop
-	int lm; 			// index leftmost
-	int current, prev;
+	int n;							// jumlah titik
+	int i, j;						// variabel untuk loop
+	int lm; 						// index leftmost
+	int current, prev;				
 	float result, total, count;
 	bool Stop1, Stop2, Stop3;
 
@@ -56,7 +56,7 @@ int main() {
 
 	// Membangun titik secara random
 	srand(time(0));
-	cout << "Daftar Poin : " << endl;
+	cout << endl << "Daftar Poin : " << endl;
 	for (i = 0; i < n; i++){
 		p[i].x = rand() % 1000;
 		p[i].y = rand() % 1000;
@@ -68,7 +68,7 @@ int main() {
 
 
 	// Memulai algoritma convex hull
-	// Menentukan titik terkiri
+	// Menentukan titik terkiri sebagai titik pertama
 	lm = 0;
 	for (i = 0; i < n; i++){
 		if(arr[i].x < arr[lm].x){
@@ -97,7 +97,7 @@ int main() {
 				if (i != current and i != prev and i != j and current != j){
 					result = IsCH(arr[current], arr[i], arr[j]);
 					if (result == 100){
-						Stop3 = true; // Gnti i
+						Stop3 = true; // Jika terdapat titik yang kolinear
 					}
 					else if (result != 100){
 						count++;
@@ -120,9 +120,11 @@ int main() {
 			}
 			i++;
 		}
-	} while (!(Stop1)); //sudah sekali putaran
+	} while (!(Stop1)); //sudah sekali putaran dan mencapai titik awal
 	hull.push_back(arr[lm]);
 
+	// Mencetak titik-titik convex hull
+	cout << "Titik penyusun convex hull : " << endl;
 	cout << "[";
 	for (int i = 0; i < hull.size()-2; i++) {
 		CetakPoint(hull[i]);
