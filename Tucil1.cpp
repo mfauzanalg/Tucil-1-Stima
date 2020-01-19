@@ -84,56 +84,62 @@ int main() {
 
 	// Menentukan titik berikutnya yg termasuk himpunan 
 	// titik penbentuk convex hull
+	if (n <= 2){
+		hull.push_back(arr[0]);
+		hull.push_back(arr[1]);
+	}
+	else{
+		current = lm;
+		prev = 999;
+		hull.push_back(arr[current]);
+		Stop1 = false;
+		do{
+			i = 0;
+			Stop2 = false;
+			while (Stop2 == false and i < n){
+				j = 0;			
+				Stop3 = false;
+				result = 0;
+				total = 0;
+				count = 0;
 
-	current = lm;
-	prev = 999;
-	hull.push_back(arr[current]);
-	Stop1 = false;
-	do{
-		i = 0;
-		Stop2 = false;
-		while (Stop2 == false and i < n){
-			j = 0;			
-			Stop3 = false;
-			result = 0;
-			total = 0;
-			count = 0;
-
-			while(Stop3 == false and j < n){
-				if (i != current and i != prev and i != j and current != j){
-					result = IsCH(arr[current], arr[i], arr[j]);
-					if (result == 100){
-						Stop3 = true; // Jika terdapat titik yang kolinear
-					}
-					else if (result != 100){
-						count++;
-						total += result;
-						
-						if (count == n-2 and ((total/count == 1) or (total/count == 2))){
-							if (i != lm) {
-								hull.push_back(arr[i]);
-								prev = current;
-								current = i;
-								Stop2 = true;
-							}
-							else if (i == lm){
-								Stop1 = true;
+				while(Stop3 == false and j < n){
+					if (i != current and i != prev and i != j and current != j){
+						result = IsCH(arr[current], arr[i], arr[j]);
+						if (result == 100){
+							Stop3 = true; // Jika terdapat titik yang kolinear
+						}
+						else if (result != 100){
+							count++;
+							total += result;
+							
+							if (count == n-2 and ((total/count == 1) or (total/count == 2))){
+								if (i != lm) {
+									hull.push_back(arr[i]);
+									prev = current;
+									current = i;
+									Stop2 = true;
+								}
+								else if (i == lm){
+									Stop1 = true;
+								}
 							}
 						}
 					}
+					j++;
 				}
-				j++;
+				i++;
 			}
-			i++;
-		}
-	} while (!(Stop1)); //sudah sekali putaran dan mencapai titik awal
-	hull.push_back(arr[lm]);
+		} while (!(Stop1)); //sudah sekali putaran dan mencapai titik awal
+		hull.push_back(arr[lm]);
+	}
+	
 	auto stop = high_resolution_clock::now(); // Berhenti menghitung waktu
 
 	// Mencetak titik-titik convex hull
-	cout << "Titik penyusun convex hull : " << endl;
+	cout << "Titik penyusun convex hull : " <<endl;
 	cout << "[";
-	for (int i = 0; i < hull.size()-2; i++) {
+	for (int i = 0; i < hull.size()-1; i++) {
 		CetakPoint(hull[i]);
 		cout << ", ";
 	}
