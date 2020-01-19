@@ -3,9 +3,15 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <algorithm> 
+#include <chrono> 
 #include "matplotlibcpp.h"
+
+using namespace std::chrono; 
 using namespace std;
 namespace plt = matplotlibcpp;
+using namespace std; 
+
 
 
 struct Point{
@@ -66,7 +72,7 @@ int main() {
 	}
 	cout << endl;
 
-
+	auto start = high_resolution_clock::now();	// Mulai menghitung waktu
 	// Memulai algoritma convex hull
 	// Menentukan titik terkiri sebagai titik pertama
 	lm = 0;
@@ -122,6 +128,7 @@ int main() {
 		}
 	} while (!(Stop1)); //sudah sekali putaran dan mencapai titik awal
 	hull.push_back(arr[lm]);
+	auto stop = high_resolution_clock::now(); // Berhenti menghitung waktu
 
 	// Mencetak titik-titik convex hull
 	cout << "Titik penyusun convex hull : " << endl;
@@ -131,8 +138,11 @@ int main() {
 		cout << ", ";
 	}
 	CetakPoint(hull[hull.size()-1]);
-	cout << "]" << endl;;
+	cout << "]" << endl;
 
+	auto duration = duration_cast<microseconds>(stop - start).count(); 
+	cout << "Waktu yang dibutuhkan untuk membentuk convex hull : " << duration << " ms" << endl;
+	
 	
 	std::vector<int> a;
 	std::vector<int> b;
@@ -153,6 +163,5 @@ int main() {
 	plt::plot(c,d,"ro");
 	plt::plot(a,b,"bo-");
 	plt::show();
-	
 	return 0;
 }
