@@ -3,9 +3,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "matplotlibcpp.h"
 using namespace std;
-namespace plt = matplotlibcpp;
 
 
 struct Point{
@@ -41,7 +39,7 @@ int IsCH (Point a, Point b, Point c){
 
 int main() {
 	int n;				// jumlah titik
-	int i, j;		// variabel untuk loop
+	int i, j, k;		// variabel untuk loop
 	int lm; 			// index leftmost
 	int current, prev;
 	float result, total, count;
@@ -58,13 +56,12 @@ int main() {
 	srand(time(0));
 	cout << "Daftar Poin : " << endl;
 	for (i = 0; i < n; i++){
-		p[i].x = rand() % 1000;
-		p[i].y = rand() % 1000;
+		p[i].x = rand() % 200;
+		p[i].y = rand() % 200;
 		arr.push_back(p[i]);
 		CetakPoint(arr[i]);
 		cout << endl;
 	}
-	cout << endl;
 
 
 	// Memulai algoritma convex hull
@@ -83,6 +80,9 @@ int main() {
 	prev = 999;
 	hull.push_back(arr[current]);
 	Stop1 = false;
+	cout << "ini paling kiri" << endl;
+	CetakPoint(arr[current]); cout << endl;
+	cout << "yuk bisa yuk" << endl;
 	do{
 		i = 0;
 		Stop2 = false;
@@ -94,6 +94,11 @@ int main() {
 			count = 0;
 
 			while(Stop3 == false and j < n){
+
+				// cout << "ini current" << current << endl;
+				// cout << "ini i" << i << endl;
+				// cout << "ini j" << j << endl;
+				// cout << "ini result " << result << endl;
 				if (i != current and i != prev and i != j and current != j){
 					result = IsCH(arr[current], arr[i], arr[j]);
 					if (result == 100){
@@ -102,6 +107,11 @@ int main() {
 					else if (result != 100){
 						count++;
 						total += result;
+					
+						// if (j == n-3){
+						// 	cout << "ini total ";
+						// 	cout << total << endl;
+						// }
 						
 						if (count == n-2 and ((total/count == 1) or (total/count == 2))){
 							if (i != lm) {
@@ -109,6 +119,7 @@ int main() {
 								prev = current;
 								current = i;
 								Stop2 = true;
+								CetakPoint(arr[i]); cout << i << endl;
 							}
 							else if (i == lm){
 								Stop1 = true;
@@ -121,36 +132,10 @@ int main() {
 			i++;
 		}
 	} while (!(Stop1)); //sudah sekali putaran
-	hull.push_back(arr[lm]);
-
-	cout << "[";
-	for (int i = 0; i < hull.size()-2; i++) {
-		CetakPoint(hull[i]);
-		cout << ", ";
-	}
-	CetakPoint(hull[hull.size()-1]);
-	cout << "]" << endl;;
-
 	
-	std::vector<int> a;
-	std::vector<int> b;
-	std::vector<int> c;
-	std::vector<int> d;
-
-	for (i = 0; i < hull.size(); i++){
-		a.push_back(hull[i].x);
-		b.push_back(hull[i].y);
-	}
-
-	for (i = 0; i < arr.size(); i++){
-		c.push_back(arr[i].x);
-		d.push_back(arr[i].y);
-	}
-
-
-	plt::plot(c,d,"ro");
-	plt::plot(a,b,"bo-");
-	plt::show();
+	// for (int i = 0; i < hull.size(); i++) 
+	// 	cout << "(" << hull[i].x << ", "
+	// 		<< hull[i].y << ")\n"; 
 	
 	return 0;
 }
