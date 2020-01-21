@@ -62,8 +62,8 @@ int main() {
 	srand(time(0));
 	cout << endl << "Daftar Poin : " << endl;
 	for (i = 0; i < n; i++){
-		p[i].x = rand() % 1000;
-		p[i].y = rand() % 1000;
+		p[i].x = rand() % 10000;
+		p[i].y = rand() % 10000;
 		arr.push_back(p[i]);
 		CetakPoint(arr[i]);
 		cout << endl;
