@@ -54,6 +54,11 @@ int main() {
 	//Meminta input banyaknya titik dari user
 	cout << "Masukkan banyaknya titik : ";
 	cin >> n;
+	while (n < 2 or n<= 0){
+		cout << "Minimal n bernilai 2" << endl;
+		cout << "Masukkan banyaknya titik : ";
+		cin >> n;
+	}
 	vector<Point> arr;
 	vector<Point> hull;
 	Point p[n];
