@@ -102,7 +102,7 @@ int main() {
 					if (i != current and i != prev and i != j and current != j){
 						result = IsCH(arr[current], arr[i], arr[j]);
 						if (result == 100){
-							// Stop3 = true; // Jika terdapat titik yang kolinear
+							// Jika terdapat titik yang kolinear Do nothing
 						}
 						else if (result != 100){
 							count++;
