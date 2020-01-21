@@ -142,7 +142,7 @@ int main() {
 	cout << "]" << endl;
 
 	auto duration = duration_cast<microseconds>(stop - start).count(); 
-	cout << "Waktu yang dibutuhkan untuk membentuk convex hull : " << duration << " ms" << endl;
+	cout << "Waktu yang dibutuhkan untuk membentuk convex hull : " << duration << " microseconds" << endl;
 	
 	return 0;
 }
